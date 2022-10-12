@@ -1,0 +1,61 @@
+.landing-text__title {
+    color: black;
+    font-family: Nunito;
+    text-decoration: none;
+    margin: 0;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.25;
+
+}
+
+.landing-text__paragraph {
+    color: black;
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 3.2rem 0 3.2rem 0;
+    word-break: normal;
+    width: 450px;
+}
+
+
+.landing-text-info-area {
+    padding: 7.5rem 0 0 0;
+}
+
+.landing-body {
+    padding-top: -20px !important;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pig {
+    padding: 5rem 8rem 0 0;
+}
+
+.intro-div{
+    padding-bottom: 100px !important;
+}
+
+@media(max-width: 57rem) {
+    .landing-body {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+
+    .landing-text__paragraph {
+        text-align: center;
+        width: 100%;
+        padding: 3.2rem;
+    }
+
+    .landing-text-info-area {
+        padding: 3.2rem;
+    }
+
+    .pig {
+        padding: 5rem;
+    }
+}

@@ -1,0 +1,58 @@
+.navbar-success {
+    margin-right: 20px;
+    border-radius: 10px !important;
+    background-color: #212529 !important;
+    border-color: white !important;
+    color: white !important;
+
+
+}
+.navbar-success:hover {
+    background-color: white !important;
+    color: #212529 !important;    
+}
+
+
+/* Navbar links */
+.navbar a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    
+  }
+  
+  /* Navbar links on mouse-over */
+  .navbar a:hover {
+    background-color: #212529 !important;
+  }
+  
+  /* Current/active navbar link */
+  .active {
+    background-color: #04AA6D;
+  }
+  
+  /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+  @media screen and (max-width: 500px) {
+    .navbar a {
+      float: none;
+      display: block;
+    }
+  }
+
+  #justtext {
+    pointer-events: none;
+  }
+
+  .custom-color{
+    background-color: #212529!important;
+  }
+
+  .width-change{
+    padding-bottom: 10px;
+  }
+
+
+
