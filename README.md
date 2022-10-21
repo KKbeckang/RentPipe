@@ -1,17 +1,17 @@
 # RentPipe
 
-#**Start Project**
+**Start Project**
 
 yarn start
 
-#**Yarn installation**
+**Yarn installation**
 
 npm install --global yarn
 
-#**Styled-component Installation**
+**Styled-component Installation**
 
-# with npm
+with npm
 npm install --save styled-components
 
-# with yarn
+with yarn
 yarn add styled-components
