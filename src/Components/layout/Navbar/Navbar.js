@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
-//import AuthService from '../../../services/auth.service';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function Navbar() {
+  const [isLoggedin, setIsLoggedIn] = useState(false) 
   const [pageState, setPageState] = useState("Sign in");
   const navigate = useNavigate();
   const auth = getAuth();
@@ -13,8 +13,10 @@ function Navbar() {
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 		if (user) {
+			setIsLoggedIn(true)
 			setPageState("Profile");
 		} else {
+			setIsLoggedIn(false)
 		  setPageState("Sign in");
 		}
 	  });
@@ -30,7 +32,6 @@ function Navbar() {
 
 				<form className="d-flex">
 				
-				
 						<button
 								className="btn btn-outline-success navbar-success button-fix"
 								type="button"
@@ -38,13 +39,20 @@ function Navbar() {
 							>
 								Offers
 							</button>
-							
+							{/*For a Button that should be displayed only when the user is logged in  */}
+						{isLoggedin? <button
+								className="btn btn-outline-success navbar-success button-fix"
+								type="button"
+								onClick={() => navigate('/Dashboard')} 
+							>
+								Dashboard
+							</button>: null}
 					
 							
 								<button
 									className="btn btn-outline-success navbar-success button-fix"
 									type="button"
-									onClick={() => {pageState === "Sign in" ? navigate('/login'): navigate('/profile')}}
+									onClick={() => { isLoggedin?  navigate('/profile'):navigate('/login')}}
 								>
 									{pageState}
 								</button>

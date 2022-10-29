@@ -27,11 +27,14 @@ const Routesr = () => {
 
 
           {/* Private: Only logged in user can access */}
+          {/*Wrap the route with PrivateRoute component to allow access to authorised user only like done below*/}
           <Routing path="/profile" element={<PrivateRoute />}>
             <Routing path="/profile" element={<Profile />} />
           </Routing>
-          
-           <Routing exact path="/dashboard" element={<Dashboard />} /> 
+          <Routing path="/dashboard" element={<PrivateRoute />}>
+          <Routing exact path="/dashboard" element={<Dashboard />} /> 
+          </Routing>
+           
           
 
           {/* Public: All can use */}
