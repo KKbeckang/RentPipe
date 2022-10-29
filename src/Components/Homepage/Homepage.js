@@ -4,7 +4,7 @@ import Intro from './Intro';
 import Card from './Card';
 
 
-const Content = () => {
+const Homepage = () => {
 	
 	return (
 		<>
@@ -14,4 +14,4 @@ const Content = () => {
 	);
 };
 
-export default Content;
+export default Homepage;

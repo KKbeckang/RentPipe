@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar/Navbar";
-import Footer from "./Footer/Footer";
+//import Footer from "./Footer/Footer";
 // import Content from "../Content/Content";
 
 
@@ -17,7 +17,7 @@ const Layout =(props)=> {
             {/* Google DialogFlow Bot*/}
           </div>
         </div>
-        <Footer/>
+       
       </>
     );
   }

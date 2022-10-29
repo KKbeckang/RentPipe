@@ -1,101 +1,60 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
-import AuthService from '../../services/auth.service';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import OAuth from '../OAuth/OAuth';
+import { db } from "../../firebase"
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+	getAuth,
+	createUserWithEmailAndPassword,
+	updateProfile,
+  } from "firebase/auth";
 
 const Signup = () => {
-	const [formErrors, setFormErrors] = useState(null);
-	const [success, setSuccess] = useState('');
-	const [data, setData] = useState({
-		firstName: '',
-		lastName: '',
-		email: '',
-		password: '',
-	});
-	const [error, setError] = useState({});
-	let navigate = useNavigate();
+	const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const { name, email, password } = formData;
+  const navigate = useNavigate();
 
-	//redirect user to dashboard if already logged in
-	useEffect(() => {
-		//checks only if current user is there major checking on dashboard
-		var currentUser = AuthService.getCurrentUser();
-		if (currentUser) {
-			navigate('/dashboard');
-		}
-	}, []);
-
-	const handleChange = ({ currentTarget: input }) => {
-		setData({ ...data, [input.name]: input.value });
+	const onChange = (e) => {
+		setFormData((prevState) => ({
+			...prevState,
+			[e.target.id]: e.target.value,
+		  }));
 	};
 
-	const validate = (values) => {
-		let errors = {};
-
-		const first = /^[a-zA-Z]+$/.test(values.firstName);
-		const last = /^[a-zA-Z]+$/.test(values.lastName);
-		const flag = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
-			values.email
-		);
-		if (flag === false) {
-			errors.email = 'Email ID is invalid!!';
-		}
-
-		if (values.password.length < 6) {
-			errors.password = 'Length of password should be greater than 6';
-		}
-
-		if (first === false) {
-			errors.firstName =
-				'Name cannot contain numerical values or spaces in this field';
-		}
-		if (last === false) {
-			errors.lastName =
-				'Name cannot contain numerical values or spaces in this field';
-		}
-
-		if (!values.email) {
-			errors.email = 'Email ID is required';
-		}
-		if (!values.password) {
-			errors.password = 'Password is required';
-		}
-		if (!values.firstName) {
-			errors.firstName = 'First Name is required';
-		}
-
-		if (!values.lastName) {
-			errors.lastName = 'Last Name is required';
-		}
-
-		return errors;
-	};
+	
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setError('');
-		setSuccess('');
-		setFormErrors('');
-		let errorPage = await validate(data);
-		await setError(errorPage);
 
-		if (Object.keys(errorPage).length === 0) {
-			AuthService.signup(
-				data.firstName,
-				data.lastName,
-				data.email,
-				data.password
-			)
-				.then((response) => {
-					//   setMessage(response.data.message);
-					navigate('/login');
-					setSuccess('Signed UP successfully!!');
-				})
-				.catch((e) => {
-					//console.log(e);
-					setFormErrors(e);
-				});
-		}
+    try {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+      const user = userCredential.user;
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+      formDataCopy.timestamp = serverTimestamp();
+
+      await setDoc(doc(db, "users", user.uid), formDataCopy);
+      navigate("/");
+	  alert("Sign up was successful");
+       
+    } catch (error) {
+      alert("Something went wrong with the registration");
+    }
 	};
 	return (
 		<div className={styles.signup_container}>
@@ -109,60 +68,43 @@ const Signup = () => {
 					</Link>
 				</div>
 				<div className={styles.right}>
-					<form className={styles.form_container} onSubmit={handleSubmit}>
-						<h1>Create Account</h1>
-						<label htmlFor="firstName">First Name</label>
+				<form className={styles.form_container} onSubmit={handleSubmit}>
+						<h1>Create a new Account</h1>
+						<label htmlFor="name">Name</label>
 						<input
-							id="firstName"
+							id="name"
 							type="text"
-							placeholder="First Name"
-							name="firstName"
-							onChange={handleChange}
-							value={data.firstName}
-							// required
+							placeholder="Full Name"
+							onChange={onChange}
+							value={name}
 							className={styles.input}
 						/>
-						<p className="disError">{error ? error.firstName : ''}</p>
-						<label htmlFor="lastName">Last Name</label>
-						<input
-							id="lastName"
-							type="text"
-							placeholder="Last Name"
-							name="lastName"
-							onChange={handleChange}
-							value={data.lastName}
-							className={styles.input}
-						/>
-						<p className="disError">{error ? error.lastName : ''}</p>
 						<label htmlFor="email">Email</label>
 						<input
 							id="email"
 							type="email"
 							placeholder="Email"
-							name="email"
-							onChange={handleChange}
-							value={data.email}
+							onChange={onChange}
+							value={email}
 							className={styles.input}
 						/>
-						<p className="disError">{error ? error.email : ''}</p>
 						<label htmlFor="password">Password</label>
 						<input
 							id="password"
 							type="password"
 							placeholder="Password"
-							name="password"
-							onChange={handleChange}
-							value={data.password}
+							onChange={onChange}
+							value={password}
 							className={styles.input}
 						/>
-						<p className="disError">{error ? error.password : ''}</p>
-						<button type="submit" className={styles.green_btn}>
-							Sign Up
+						<button className="btn btn-success btn-round-lg btn-lg ">
+							<span>Sign up</span>
 						</button>
+						<div className="divider d-flex align-items-center my-4">
+            				<p className="text-center fw-bold mx-3 mb-0">Or</p>
+          				</div>
+						<OAuth/>
 					</form>
-					<div className="loginError">
-						{formErrors !== '' ? formErrors : success}
-					</div>
 				</div>
 			</div>
 		</div>

@@ -1,86 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
-import AuthService from '../../../services/auth.service';
+//import AuthService from '../../../services/auth.service';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-function Navbar(props) {
-	let navigate = useNavigate();
-	const redirectRoute = (path) => {
-		navigate(path);
-	};
+function Navbar() {
+  const [pageState, setPageState] = useState("Sign in");
+  const navigate = useNavigate();
+  const auth = getAuth();
 
-	const [content, setContent] = useState('');
-	const [accessToken, setAccessToken] = useState('');
-	//checks local storage and gets information about the user
-	//if no Token shows Signin and sign up button
+
 	useEffect(() => {
-		var data = AuthService.getCurrentUser();
-		if (data) {
-			setContent(data.user.userName);
-			setAccessToken(data.accessToken);
+		onAuthStateChanged(auth, (user) => {
+		if (user) {
+			setPageState("Profile");
 		} else {
-			setContent('');
-			setAccessToken(undefined);
+		  setPageState("Sign in");
 		}
-	}, []);
+	  });
+	}, [auth]);
 
-	const handleLogout = async (e) => {
-		AuthService.logout();
-		redirectRoute('/');
-		window.location.reload();
-	};
 
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark custom-color py-0 ">
 			<div className="container-fluid width-change">
 				<Link className="navbar-brand hover-change" to="/">
-					{/* <a className="navbar-brand hover-change"> */}
 					HOME
-					{/* </a> */}
 				</Link>
 
 				<form className="d-flex">
-					{accessToken !== undefined ? (
-						<React.Fragment>
-							<a href="/#" id="justtext">
-								<i className="fa fa-fw fa-user"></i>Welcome {content} !
-							</a>
-
+				
+				
 						<button
 								className="btn btn-outline-success navbar-success button-fix"
 								type="button"
-								onClick={() => redirectRoute('/dashboard')} //Redirects to DashBoard
+								onClick={() => navigate('/offers')} 
 							>
-								Dashboard
+								Offers
 							</button>
-							<button
-								className="btn btn-outline-success navbar-success button-fix"
-								type="button"
-								onClick={handleLogout} //Handle logout event
-							>
-								Logout
-							</button>
-						</React.Fragment>
-					) : (
-						<React.Fragment>
-							<div className="width-change">
+							
+					
+							
 								<button
-									className="btn btn-outline-success navbar-success"
+									className="btn btn-outline-success navbar-success button-fix"
 									type="button"
-									onClick={() => redirectRoute('/signup')}
+									onClick={() => {pageState === "Sign in" ? navigate('/login'): navigate('/profile')}}
 								>
-									Sign Up
+									{pageState}
 								</button>
-								<button
-									className="btn btn-outline-success navbar-success"
-									type="button"
-									onClick={() => redirectRoute('/login')}
-								>
-									Sign In
-								</button>
-							</div>
-						</React.Fragment>
-					)}
+							
+						
 				</form>
 			</div>
 		</nav>
