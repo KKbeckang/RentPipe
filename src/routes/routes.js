@@ -2,7 +2,7 @@ import React from "react";
 import { Routes as Switch, Route as Routing } from "react-router-dom";
 
 import Dashboard from "../Components/Dashboard/Dashboard";
-
+import Messenger from "../Components/Messenger";
 import Homepage from "../Components/Homepage/Homepage";
 import Login from "../Components/login/login";
 import Signup from "../Components/Signup";
@@ -33,7 +33,9 @@ const Routesr = () => {
           </Routing>
           <Routing path="/dashboard" element={<PrivateRoute />}>
           <Routing exact path="/dashboard" element={<Dashboard />} /> 
+          
           </Routing>
+          <Routing exact path="/messenger" element={<Messenger />} /> 
            
           
 
@@ -41,7 +43,7 @@ const Routesr = () => {
           
           <Routing exact path="*" element={<Errors />} />
         </Switch>
-      </Layout>
+      </Layout> 
     </>
   );
 };

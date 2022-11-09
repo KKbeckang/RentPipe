@@ -21,7 +21,7 @@ const DashBoard = (props) => {
 			<SearchBox/>
             <h1>Hi, I am DashBoard</h1>
         </div>
-    )
+    ) 
 };
 
 export default DashBoard;
