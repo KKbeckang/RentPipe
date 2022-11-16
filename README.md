@@ -17,3 +17,5 @@ save styled-components
 **with yarn**
 
 yarn add styled-components
+
+npm install react-bootstrap bootstrap
