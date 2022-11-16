@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBox from '../search-box/search-box.component';
 import styled from "styled-components";
+import GridExample from './Gridcard';
 import "./styles.css";
 
 const DashBoard = (props) => {
@@ -17,9 +18,10 @@ const DashBoard = (props) => {
 
 	return (
         <div>
-			<Title>Expanding Search Box</Title>
+			<Title>Lets Find You A Homep</Title>
 			<SearchBox/>
-            <h1>Hi, I am DashBoard</h1>
+            <h1>Here are some options:</h1>
+			<GridExample/>
         </div>
     )
 };
