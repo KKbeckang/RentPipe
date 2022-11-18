@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 function GridExample() {
   return (
     <Row xs={1} md={2} className="g-4">
-      {Array.from({ length: 10}).map((_, idx) => (
+      {Array.from({ length: 5}).map((_, idx) => (
         <Col>
           <Card>
             <Card.Img variant="top" src="https://i.ibb.co/M2j04ft/1126773.jpg" />

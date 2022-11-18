@@ -11,14 +11,14 @@ const DashBoard = (props) => {
 	// };
 	const Title = styled.p`
 		font-size: 2rem;
-		color: #eeeeee;
+		color: #000000;
 		letter-spacing: 0.15em;
 		line-height: 2em;
 	`;
 
 	return (
         <div>
-			<Title>Lets Find You A Homep</Title>
+			<Title>Lets Find You A Home</Title>
 			<SearchBox/>
             <h1>Here are some options:</h1>
 			<GridExample/>

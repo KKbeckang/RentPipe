@@ -33,6 +33,8 @@ export default function Profile() {
     <br/>
     <button type="button" class="btn btn-danger btn-lg" onClick={onLogout}>Log Out</button>
     <br/>
+    <br/>
+    <button type="button" class="btn btn-primary btn-lg" onClick={()=>{navigate("/sellorrentyourhome")}}>Sell or Rent your Home</button>
 
     
     </div>

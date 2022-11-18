@@ -14,7 +14,7 @@ function Navbar() {
 		onAuthStateChanged(auth, (user) => {
 		if (user) {
 			setIsLoggedIn(true)
-			setPageState("Profile");
+			setPageState("Account");
 		} else {
 			setIsLoggedIn(false)
 		  setPageState("Sign in");
@@ -26,12 +26,13 @@ function Navbar() {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark custom-color py-0 ">
 			<div className="container-fluid width-change">
+				
 				<Link className="navbar-brand hover-change" to="/">
-					HOME
+				<h1>Rentpipe</h1>
 				</Link>
 
 				<form className="d-flex">
-				
+						{/*
 						<button
 								className="btn btn-outline-success navbar-success button-fix"
 								type="button"
@@ -39,14 +40,22 @@ function Navbar() {
 							>
 								Offers
 							</button>
+						 */}
+
 							{/*For a Button that should be displayed only when the user is logged in  */}
-						{isLoggedin? <button
+						{isLoggedin? <div><button
 								className="btn btn-outline-success navbar-success button-fix"
 								type="button"
 								onClick={() => navigate('/Dashboard')} 
 							>
 								Dashboard
-							</button>: null}
+							</button><button
+								className="btn btn-outline-success navbar-success button-fix"
+								type="button"
+								onClick={() => navigate('/messages')} 
+							>
+								Messages
+							</button></div>: null}
 					
 							
 								<button
