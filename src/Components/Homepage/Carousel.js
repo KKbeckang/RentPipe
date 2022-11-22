@@ -9,8 +9,8 @@ function BackgroundCSL() {
 		navigate(path);};
     return (
     
-    <Carousel>
-      <Carousel.Item>
+    <Carousel fade>
+      <Carousel.Item interval={1200}>
         <img
           className="d-block w-100"
           src="https://i.ibb.co/HFd80NP/wp2529605-16k-wallpapers.jpg"
@@ -29,7 +29,8 @@ function BackgroundCSL() {
         </Carousel.Caption>
 
       </Carousel.Item>
-      <Carousel.Item>
+
+      <Carousel.Item interval={1200}>
         <img
           className="d-block w-100"
           src="https://i.ibb.co/HFd80NP/wp2529605-16k-wallpapers.jpg"
@@ -48,7 +49,8 @@ function BackgroundCSL() {
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item>
+
+      <Carousel.Item interval={1200}>
         <img
           className="d-block w-100"
           src="https://i.ibb.co/HFd80NP/wp2529605-16k-wallpapers.jpg"

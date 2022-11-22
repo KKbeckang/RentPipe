@@ -12,6 +12,7 @@ import Profile from "../Components/Profile/Profile";
 
 import PrivateRoute from "../PrivateRoute";
 import Errors from "../Components/Errors";
+import Listing from "../Components/Listing/Listing";
 
 
 const Routesr = () => {
@@ -26,8 +27,8 @@ const Routesr = () => {
           <Routing path="/forgot-password" element={<ForgotPassword />} />
 
           {/*Listing Routes need to replace Sign up with Listing page*/}
-          <Routing path="/rent/:id" element={<Signup />} />
-          <Routing path="/sell/:id" element={<Signup />} />
+          <Routing path="/rent/:id" element={<Listing />} />
+          <Routing path="/sale/:id" element={<Listing />} />
 
 
           {/* Private: Only logged in user can access */}

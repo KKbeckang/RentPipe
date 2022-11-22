@@ -34,7 +34,7 @@ import {
               <Card.Text>
                 {`${listing.data.address}`}
               </Card.Text>
-              <Card.Link href={`/listing/${listing.id}`}> Contact Listing</Card.Link>
+              <Card.Link href={`/${listing.data.type}/${listing.id}`}> Contact Listing</Card.Link>
             </Card.Body>
           </Card>
         </Col>
