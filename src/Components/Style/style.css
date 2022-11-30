@@ -17,3 +17,8 @@ h2 {
 	background-color: #212529;
 	border-radius: 4px;
 }
+
+.thimbnailImg {
+	padding: 5px;
+	width: 30px;
+  }

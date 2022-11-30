@@ -8,7 +8,10 @@ import Button from "react-bootstrap/Button"
 import Badge from "react-bootstrap/Badge"
 import { getAuth } from "firebase/auth";
 import useUser from '../../hooks/useUser';
-
+import timeAgo from 'epoch-timeago';
+import bed from "../../Assets/bed.png"
+import bathroom from "../../Assets/bathroom.png"
+import Image from 'react-bootstrap/Image'
 
 export default function Listing() {
   const {user,isLoading} = useUser()
@@ -34,39 +37,54 @@ export default function Listing() {
     return <Spinner />;
   }
 
+  const timestamp = (seconds)=>{
+    seconds = parseInt(seconds)
+    let day = (seconds / (24 * 3600))
+    let month = day/30
+    let hour = ((seconds % (24 * 3600)) / 3600 )
+    let min = ((seconds % (24 * 3600 * 3600)) / 60 )
+    
+    
+    if(month >=1)return month.toString()
+    else if(day >= 1) return day.toString()
+    else if(hour >=1) return hour.toString()
+    else return min.toString()
+
+  }
 
   return (
     <main>
       <div className="m-4 flex flex-col md:flex-row max-w-6xl lg:mx-auto p-4 rounded-lg shadow-lg bg-white lg:space-x-5">
-        <div className=" w-full ">
-        <h1 className="text-2xl font-bold mb-3 text-blue-900">
+        <div>
+        <h1>
             {listing.name} - {listing.type == "rent" ? "Rent":"Sale"} - ${" "}
             {listing.offer
-              ? <>{listing.discountedPrice
+              ? listing.discountedPrice
                   .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}<Badge bg="secondary">New</Badge></>
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
               : listing.regularPrice
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             {listing.type === "rent" ? " / month" : ""}
+            {listing.offer ? <Badge pill bg="success">Discounted Price</Badge>:null}
           </h1>
           {listing.imgUrls ? <Slider img={listing.imgUrls}/>: null}
          <br/>
         
-          <p className="flex items-center mt-6 mb-3 font-semibold">
+          <p>
             Address: {listing.address}
           </p>
           <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(listing.address)}`} target="_blank">Open in Google maps</a>
           
-          <div className="flex justify-start items-center space-x-4 w-[75%]">
-            <p className="bg-red-800 w-full max-w-[200px] rounded-md p-1 text-white text-center font-semibold shadow-md">
+          <div>
+            <p>
               {listing.type === "rent" ? "Rent" : "Sale"}
             </p>
-            {listing.offer && (
-              <p className="w-full max-w-[200px] bg-green-800 rounded-md p-1 text-white text-center font-semibold shadow-md">
-                ${+listing.regularPrice - +listing.discountedPrice} discount
-              </p>
-            )}
+    
+              <div>
+                {listing.offer ? <p>Price: <del>{listing.regularPrice}$</del> {listing.discountedPrice}$ <Badge pill bg="success">Discount</Badge></p>: <p>Price: {listing.regularPrice}$</p>}
+              </div>
+       
           </div>
           <p className="mt-3 mb-3">
             <span className="font-semibold">Description - </span>
@@ -75,11 +93,11 @@ export default function Listing() {
           <ul className="flex items-center space-x-2 sm:space-x-10 text-sm font-semibold mb-6">
             <li className="flex items-center whitespace-nowrap">
              {/*  <FaBed className="text-lg mr-1" />*/}
-              {+listing.bedrooms > 1 ? `${listing.bedrooms} Beds` : "1 Bed"}
+              {+listing.bedrooms > 1 ? <>{listing.bedrooms} Beds<Image className="thimbnailImg" src={bed} />  </>: "1 Bed"}
             </li>
             <li className="flex items-center whitespace-nowrap">
              {/* <FaBath className="text-lg mr-1" />*/} 
-              {+listing.bathrooms > 1 ? `${listing.bathrooms} Baths` : "1 Bath"}
+              {+listing.bathrooms > 1 ? <>{listing.bathrooms} Baths<Image className="thimbnailImg" src={bathroom} /></>: "1 Bath"}
             </li>
             <li className="flex items-center whitespace-nowrap">
              {/*  <FaParking className="text-lg mr-1" />*/}
@@ -97,8 +115,11 @@ export default function Listing() {
               >
                 Contact Landlord
               </Button>
+              
             </div>
           )}</div>: <Button onClick={()=>{navigate("/login")}}>Login to get in touch</Button>}
+          <hr/>
+              <p className="ptag">posted {timeAgo(listing.timestamp.seconds * 1000)}</p>
         </div>
       </div>
     </main>

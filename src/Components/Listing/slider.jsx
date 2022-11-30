@@ -1,14 +1,14 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-
+import Image from 'react-bootstrap/Image'
 export default function Slider(props) {
     
     const carouselItems = props.img.map((img) =>  {
         return (<Carousel.Item>
-        <img
+        <Image fluid
           className="d-block w-100"
           src={img}
-          alt="First slide"
+          alt="House images"
         />
       </Carousel.Item>
         )
@@ -18,7 +18,7 @@ export default function Slider(props) {
 
     
     return (
-     <div>
+     <div className='h-75 d-block'>
         <Carousel fade>
             {carouselItems}
           </Carousel>
