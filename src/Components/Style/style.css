@@ -1,0 +1,19 @@
+.row-cols-lg-4 {
+	padding-left: 2rem;
+	padding-bottom: 2rem;
+}
+
+p {
+	text-align: center;
+}
+h2 {
+	text-align: center;
+	color: white;
+}
+.bgcolor {
+	background-color: #f7f7f7;
+}
+.heading {
+	background-color: #212529;
+	border-radius: 4px;
+}
