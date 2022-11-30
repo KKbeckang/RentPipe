@@ -57,7 +57,14 @@ function Navbar() {
 								Messages
 							</button></div>: null}
 					
-							
+							{isLoggedin? <button
+								className="btn btn-outline-success navbar-success button-fix"
+								type="button"
+								onClick={() => navigate('/messenger')} 
+							>
+								Messages
+							</button>: null}
+
 								<button
 									className="btn btn-outline-success navbar-success button-fix"
 									type="button"
@@ -71,6 +78,6 @@ function Navbar() {
 			</div>
 		</nav>
 	);
-}
+} 
 
 export default Navbar;

@@ -23,7 +23,7 @@ const DashBoard = (props) => {
             <h1>Here are some options:</h1>
 			<GridExample/>
         </div>
-    )
+    ) 
 };
 
 export default DashBoard;
