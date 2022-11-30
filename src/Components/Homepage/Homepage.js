@@ -59,7 +59,7 @@ const Homepage = () => {
 					<div className="heading">
 						<h2>Recent offers</h2>
 						<Link to="/offers" style={{ textDecoration: 'none' }}>
-							<p>Show more offers</p>
+							<p className="ptag">Show more offers</p>
 						</Link>
 					</div>
 					<ListingItem data={offerListings} from="HOMEPAGE" />
@@ -71,7 +71,7 @@ const Homepage = () => {
 					<div className="heading">
 						<h2>Places for rent</h2>
 						<Link to="/category/rent" style={{ textDecoration: 'none' }}>
-							<p>Show more places for rent</p>
+							<p className="ptag">Show more places for rent</p>
 						</Link>
 					</div>
 					<ListingItem data={rentListings} from="HOMEPAGE" />
@@ -82,7 +82,7 @@ const Homepage = () => {
 					<div className="heading">
 						<h2>Places for sale</h2>
 						<Link to="/category/rent" style={{ textDecoration: 'none' }}>
-							<p>Show more places for sale</p>
+							<p className="ptag">Show more places for sale</p>
 						</Link>
 					</div>
 					<ListingItem data={saleListings} from="HOMEPAGE" />
