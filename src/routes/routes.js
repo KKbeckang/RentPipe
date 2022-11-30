@@ -38,9 +38,10 @@ const Routesr = () => {
           </Routing>
           <Routing path="/dashboard" element={<PrivateRoute />}>
           <Routing exact path="/dashboard" element={<Dashboard />} /> 
-          
           </Routing>
+          <Routing path="/messenger" element={<PrivateRoute />}>
           <Routing exact path="/messenger" element={<Messenger />} /> 
+          </Routing>
           <Routing path="/sellorrentyourhome" element={<PrivateRoute />}>
           <Routing exact path="/sellorrentyourhome" element={<CreateListing />} /> 
           </Routing>

@@ -49,12 +49,6 @@ function Navbar() {
 								onClick={() => navigate('/Dashboard')} 
 							>
 								Dashboard
-							</button><button
-								className="btn btn-outline-success navbar-success button-fix"
-								type="button"
-								onClick={() => navigate('/messages')} 
-							>
-								Messages
 							</button></div>: null}
 					
 							{isLoggedin? <button
