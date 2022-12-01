@@ -13,7 +13,9 @@ import Profile from "../Components/Profile/Profile";
 import PrivateRoute from "../PrivateRoute";
 import Errors from "../Components/Errors";
 import Listing from "../Components/Listing/Listing";
-
+import Offers from "../Components/Offers/Offers";
+import Sale from "../Components/Sale/Sale";
+import Rent from "../Components/Rent/Rent";
 
 const Routesr = () => {
   return (
@@ -29,7 +31,9 @@ const Routesr = () => {
           {/*Listing Routes need to replace Sign up with Listing page*/}
           <Routing path="/rent/:id" element={<Listing />} />
           <Routing path="/sale/:id" element={<Listing />} />
-
+          <Routing path="/offers" element={<Offers />} />
+          <Routing path="/category/sale" element={<Sale />} />
+          <Routing path="/category/rent" element={<Rent />} />
 
           {/* Private: Only logged in user can access */}
           {/*Wrap the route with PrivateRoute component to allow access to authorised user only like done below*/}

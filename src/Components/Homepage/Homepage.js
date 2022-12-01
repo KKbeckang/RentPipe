@@ -81,7 +81,7 @@ const Homepage = () => {
 				<div className="bgcolor">
 					<div className="heading">
 						<h2>Places for sale</h2>
-						<Link to="/category/rent" style={{ textDecoration: 'none' }}>
+						<Link to="/category/sale" style={{ textDecoration: 'none' }}>
 							<p className="ptag">Show more places for sale</p>
 						</Link>
 					</div>
