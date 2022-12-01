@@ -35,24 +35,25 @@ function Navbar() {
 				</Link>
 
 				<form className="d-flex">
-						{/*
+						
 						<button
 								className="btn btn-outline-success navbar-success button-fix"
 								type="button"
-								onClick={() => navigate('/offers')} 
+								onClick={() => navigate('/category/rent')} 
 							>
-								Offers
+								Rent
 							</button>
-						 */}
-
-							{/*For a Button that should be displayed only when the user is logged in  */}
-						{isLoggedin? <div><button
+							<button
 								className="btn btn-outline-success navbar-success button-fix"
 								type="button"
-								onClick={() => navigate('/Dashboard')} 
+								onClick={() => navigate('/category/sale')} 
 							>
-								Dashboard
-							</button></div>: null}
+								Sale
+							</button>
+						
+
+							{/*For a Button that should be displayed only when the user is logged in  */}
+					
 					
 							{isLoggedin? <button
 								className="btn btn-outline-success navbar-success button-fix"

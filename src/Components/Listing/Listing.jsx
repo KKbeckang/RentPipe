@@ -123,7 +123,7 @@ export default function Listing() {
               </Button>
               
             </div>
-          )}</div>: <Button onClick={()=>{navigate("/login")}}>Login to get in touch</Button>}
+          )}</div>: <div className="contactOwner"><Button onClick={()=>{navigate("/login")}}>Login to get in touch</Button></div>}
           
           <hr/>
               <p className="ptag">posted {timeAgo(listing.timestamp.seconds * 1000)}</p>

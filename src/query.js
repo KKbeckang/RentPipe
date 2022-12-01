@@ -14,17 +14,38 @@ import {
     listingsRef,
     where("type", "==", "sale"),
     orderBy("timestamp", "desc"),
-    limit(4)
+   
   );
 
   const rentListingQuery = query(
     listingsRef,
     where("type", "==", "rent"),
     orderBy("timestamp", "desc"),
-    limit(4)
+    
   );
 
   const offerListingQuery = query(
+    listingsRef,
+    where("offer", "==", true),
+    orderBy("timestamp", "desc"),
+    
+  );
+
+  const saleListingHome = query(
+    listingsRef,
+    where("type", "==", "sale"),
+    orderBy("timestamp", "desc"),
+    limit(4)
+  );
+
+  const rentListingHome = query(
+    listingsRef,
+    where("type", "==", "rent"),
+    orderBy("timestamp", "desc"),
+    limit(4)
+  );
+
+  const offerListingHome = query(
     listingsRef,
     where("offer", "==", true),
     orderBy("timestamp", "desc"),
@@ -32,12 +53,13 @@ import {
   );
 
 
-
-
   const queries = {
     saleListingQuery,
     rentListingQuery,
-    offerListingQuery
+    offerListingQuery,
+    saleListingHome,
+    rentListingHome,
+    offerListingHome
     
 }
 

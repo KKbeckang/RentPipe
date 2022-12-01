@@ -30,9 +30,9 @@ const Homepage = () => {
 		async function fetchListings() {
 			try {
 				// execute the query
-				const querySnapSale = await getDocs(queries.saleListingQuery);
-				const querySnapRent = await getDocs(queries.rentListingQuery);
-				const querySnapOffer = await getDocs(queries.offerListingQuery);
+				const querySnapSale = await getDocs(queries.saleListingHome);
+				const querySnapRent = await getDocs(queries.rentListingHome);
+				const querySnapOffer = await getDocs(queries.offerListingHome);
 
 				//Calling the clean function for all the data
 				const saleListing = cleanData(querySnapSale);
