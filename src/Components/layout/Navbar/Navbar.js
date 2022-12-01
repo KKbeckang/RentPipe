@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Badge from 'react-bootstrap/esm/Badge';
+
 
 function Navbar() {
+
   const [isLoggedin, setIsLoggedIn] = useState(false) 
   const [pageState, setPageState] = useState("Sign in");
   const navigate = useNavigate();
@@ -56,7 +59,8 @@ function Navbar() {
 								type="button"
 								onClick={() => navigate('/messenger')} 
 							>
-								Messages
+								Messages 
+								{isLoggedin? <Badge  bg="danger">2</Badge>:null}
 							</button>: null}
 
 								<button

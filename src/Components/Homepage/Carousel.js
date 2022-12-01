@@ -1,7 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel';
 import './Carousel.css';
 import { useNavigate } from 'react-router-dom';
-
+import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 function BackgroundCSL() {
 	let navigate = useNavigate();
@@ -19,9 +19,20 @@ function BackgroundCSL() {
           src={img}
           alt="House images"
         />
+		<div class="form-group"> 
+			<div class="container">
+            <div class="row">
+            <div class="col-md-10">
+                <input type="text" class="form-control input-lg" placeholder="Enter Zip Code"/>  
+            </div>
+            <div class="col-md-2">
+                <Button variant='success' href="#" role="button">GO</Button>
+            </div>
+            </div>
+        </div>   
+    </div>
 		<Carousel.Caption>
-					<h3>First slide label</h3>
-					<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+					<h3>Lets Find You A Home</h3>
 				</Carousel.Caption>
       </Carousel.Item>
         )
@@ -32,6 +43,7 @@ function BackgroundCSL() {
 		<div className='carouselHomepage'>
 		<Carousel fade >
 			{carouselItems}
+			
 		</Carousel>
 		</div>
 	);
