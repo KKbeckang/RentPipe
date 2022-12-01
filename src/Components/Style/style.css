@@ -21,4 +21,38 @@ h2 {
 .thimbnailImg {
 	padding: 5px;
 	width: 30px;
-  }
+}
+
+.carouselListing{
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+.cardListing{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 100px;
+	margin-left: 100px;
+	padding-top: 25px;
+  	padding-right: 30px;
+  	padding-bottom: 20px;
+  	padding-left: 30px;
+}
+
+.address{
+	font-size: 25px;
+}
+
+.contactOwner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.salerent {
+	width: 60px;
+}

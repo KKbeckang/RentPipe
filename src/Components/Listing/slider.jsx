@@ -18,7 +18,7 @@ export default function Slider(props) {
 
     
     return (
-     <div className='h-75 d-block'>
+     <div className='carouselListing'>
         <Carousel fade>
             {carouselItems}
           </Carousel>

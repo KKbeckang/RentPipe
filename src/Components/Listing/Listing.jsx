@@ -12,6 +12,12 @@ import timeAgo from 'epoch-timeago';
 import bed from "../../Assets/bed.png"
 import bathroom from "../../Assets/bathroom.png"
 import Image from 'react-bootstrap/Image'
+import Card from "react-bootstrap/Card"
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import rent from "../../Assets/rent.png"
+import sale from "../../Assets/sale.png"
 
 export default function Listing() {
   const {user,isLoading} = useUser()
@@ -37,24 +43,11 @@ export default function Listing() {
     return <Spinner />;
   }
 
-  const timestamp = (seconds)=>{
-    seconds = parseInt(seconds)
-    let day = (seconds / (24 * 3600))
-    let month = day/30
-    let hour = ((seconds % (24 * 3600)) / 3600 )
-    let min = ((seconds % (24 * 3600 * 3600)) / 60 )
-    
-    
-    if(month >=1)return month.toString()
-    else if(day >= 1) return day.toString()
-    else if(hour >=1) return hour.toString()
-    else return min.toString()
 
-  }
 
   return (
-    <main>
-      <div className="m-4 flex flex-col md:flex-row max-w-6xl lg:mx-auto p-4 rounded-lg shadow-lg bg-white lg:space-x-5">
+    
+      <Card className="cardListing">
         <div>
         <h1>
             {listing.name} - {listing.type == "rent" ? "Rent":"Sale"} - ${" "}
@@ -71,14 +64,21 @@ export default function Listing() {
           {listing.imgUrls ? <Slider img={listing.imgUrls}/>: null}
          <br/>
         
-          <p>
+         
+         
+          <Container>
+          <Row>
+            <Col><p className="address">
             Address: {listing.address}
-          </p>
-          <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(listing.address)}`} target="_blank">Open in Google maps</a>
-          
-          <div>
+            
+          </p></Col>
+            <Col><a className="address" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(listing.address)}`} target="_blank">Open in Google maps</a></Col>
+          </Row>
+          <Row>
+            <Col>
+            <div>
             <p>
-              {listing.type === "rent" ? "Rent" : "Sale"}
+              {listing.type === "rent" ? <Image className="salerent" src={rent} /> : <Image className="salerent" src={sale} />}
             </p>
     
               <div>
@@ -90,7 +90,9 @@ export default function Listing() {
             <span className="font-semibold">Description - </span>
             {listing.description}
           </p>
-          <ul className="flex items-center space-x-2 sm:space-x-10 text-sm font-semibold mb-6">
+            </Col>
+            <Col>
+            <ul className="flex items-center space-x-2 sm:space-x-10 text-sm font-semibold mb-6">
             <li className="flex items-center whitespace-nowrap">
              {/*  <FaBed className="text-lg mr-1" />*/}
               {+listing.bedrooms > 1 ? <>{listing.bedrooms} Beds<Image className="thimbnailImg" src={bed} />  </>: "1 Bed"}
@@ -108,9 +110,13 @@ export default function Listing() {
               {listing.furnished ? "Furnished" : "Not furnished"}
             </li>
           </ul>
-          {user ? <div>{listing.userRef !== auth.currentUser?.uid && (
+            </Col>
+          </Row>
+
+          </Container>
+          {user ? <div className="contactOwner" >{listing.userRef !== auth.currentUser?.uid && (
             <div className="mt-6">
-              <Button
+              <Button 
                 onClick={() => {navigate("/messenger")}}
               >
                 Contact Landlord
@@ -118,10 +124,11 @@ export default function Listing() {
               
             </div>
           )}</div>: <Button onClick={()=>{navigate("/login")}}>Login to get in touch</Button>}
+          
           <hr/>
               <p className="ptag">posted {timeAgo(listing.timestamp.seconds * 1000)}</p>
         </div>
-      </div>
-    </main>
+      </Card>
+    
   );
 }

@@ -1,7 +1,6 @@
-.button1 {
-    margin: 0;
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.carouselHomepage .item{
+  height: 650px;
+  width: 100%;
   }
+
+ 
