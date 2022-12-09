@@ -4,8 +4,14 @@ import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
 import Message from '../Message';
 import moment from 'moment';
-
+import { IoIosInformationCircle } from "react-icons/io";
 import './MessageList.css';
+import styled from 'styled-components';
+import { Stack } from 'react-bootstrap';
+import PopUp from '../PopUps/PopUp';
+import Modal from 'react-bootstrap/Modal';
+import Listingitem from '../Listingitem/Listingitem';
+
 
 const MY_USER_ID = 'apple';
 
@@ -16,62 +22,116 @@ export default function MessageList(props) {
     getMessages();
   },[])
 
-  
+  const theme = {
+    blue: {
+      default: "#343a40",
+      hover: "#b0b8c0"
+    },
+  }
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const Button = styled.button`
+  background-color: ${(props) => theme[props.theme].default};
+  color: white;
+  padding: 3px 3px;
+  border-radius: 100px;
+  outline: 0;
+  margin: 0px 0px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0px 2px 2px lightgray;
+  transition: ease background-color 250ms;
+  &:hover {
+    background-color: ${(props) => theme[props.theme].hover};
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
+`;
+
+
+function sayHello() {
+  alert('You clicked me!');
+}
+
+Button.defaultProps = {
+  theme: "blue"
+};
+
+const [rentListings, setRentListings] = useState(null);
+
   const getMessages = () => {
      var tempMessages = [
         {
           id: 1,
           author: 'apple',
+          message: 'Hello, Is this property available?',
          timestamp: new Date().getTime()
         },
         {
           id: 2,
           author: 'orange',
+          message: 'Yes, it is available',
           timestamp: new Date().getTime()
         },
         {
           id: 3,
           author: 'orange',
+          message: 'Would you like to visit it?',
          timestamp: new Date().getTime()
         },
         {
           id: 4,
           author: 'apple',
+          message: 'Yes, I would love to take a look',
          timestamp: new Date().getTime()
         },
         {
           id: 5,
           author: 'apple',
+          message: 'When can I visit the earliest',
           timestamp: new Date().getTime()
         },
         {
           id: 6,
           author: 'apple',
+          message: 'I am mostly free on the weekends',
          timestamp: new Date().getTime()
         },
         {
           id: 7,
           author: 'orange',
+          message: 'Weekends sound great.',
           timestamp: new Date().getTime()
         },
         {
           id: 8,
           author: 'orange',
+          message: 'How about next weekend?',
          timestamp: new Date().getTime()
         },
         {
           id: 9,
           author: 'apple',
+          message: 'Yes, that sounds perfect',
           timestamp: new Date().getTime()
         },
         {
           id: 10,
           author: 'orange',
+          message: 'Awesome, I will seee you then.',
           timestamp: new Date().getTime()
         },
       ]
       setMessages([...messages, ...tempMessages])
   }
+
+  
 
   const renderMessages = () => {
     let i = 0;
@@ -132,15 +192,30 @@ export default function MessageList(props) {
     return tempMessages;
   }
 
+  
     return(
       <div className="message-list">
+        
+       <Stack>
         <Toolbar
           title="fName lName"
-          rightItems={[
-            <ToolbarButton key="info" icon="ion-ios-information-circle-outline" />,
-            
+          rightItems={[       
+          <Button onClick={handleShow}>
+            <IoIosInformationCircle size={30}/>
+          </Button> 
           ]}
         />
+        <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Property Information</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Property from firebase goes here</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
         <div className="message-list-container">{renderMessages()}</div>
 
@@ -152,6 +227,9 @@ export default function MessageList(props) {
           <ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
           <ToolbarButton key="emoji" icon="ion-ios-happy" />
         ]}/>
+
+
+        </Stack>
       </div>
     );
 }
