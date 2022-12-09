@@ -4,83 +4,126 @@ import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
 import Message from '../Message';
 import moment from 'moment';
-
-
+import { IoIosInformationCircle } from "react-icons/io";
 import './MessageList.css';
+import styled from 'styled-components';
+import { Stack } from 'react-bootstrap';
 import PopUp from '../PopUps/PopUp';
 
+
 const MY_USER_ID = 'apple';
-document.addEventListener("DOMContentLoaded",() => {
-  const the_button = document.querySelector(".js-btn")
-  // the_button.addEventListener("click", handleClick)
-})
-
-
 
 export default function MessageList(props) {
   const [messages, setMessages] = useState([])
-
 
   useEffect(() => {
     getMessages();
   },[])
 
-  
+  const theme = {
+    blue: {
+      default: "#343a40",
+      hover: "#b0b8c0"
+    },
+  }
+
+  const Button = styled.button`
+  background-color: ${(props) => theme[props.theme].default};
+  color: white;
+  padding: 3px 3px;
+  border-radius: 100px;
+  outline: 0;
+  margin: 0px 0px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0px 2px 2px lightgray;
+  transition: ease background-color 250ms;
+  &:hover {
+    background-color: ${(props) => theme[props.theme].hover};
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
+`;
+
+
+function sayHello() {
+  alert('You clicked me!');
+}
+
+Button.defaultProps = {
+  theme: "blue"
+};
+
+
   const getMessages = () => {
      var tempMessages = [
         {
           id: 1,
           author: 'apple',
-          message: 'Hey, is this listing still available?',
-          timestamp: new Date().getTime()
+          message: 'Hello, Is this property available?',
+         timestamp: new Date().getTime()
         },
         {
           id: 2,
           author: 'orange',
-          message: 'Oh yes it is.',
+          message: 'Yes, it is available',
           timestamp: new Date().getTime()
         },
         {
           id: 3,
           author: 'orange',
           message: 'Would you like to visit it?',
-          timestamp: new Date().getTime()
+         timestamp: new Date().getTime()
         },
         {
           id: 4,
           author: 'apple',
-          message: 'Yes, I liked the location of the property',
-          timestamp: new Date().getTime()
+          message: 'Yes, I would love to take a look',
+         timestamp: new Date().getTime()
         },
         {
           id: 5,
           author: 'apple',
-          message: 'When can I expect to visit?',
+          message: 'When can I visit the earliest',
           timestamp: new Date().getTime()
         },
-        // {
-        //   id: 7,
-        //   author: 'orange',
-        //   timestamp: new Date().getTime()
-        // },
-        // {
-        //   id: 8,
-        //   author: 'orange',
-        //  timestamp: new Date().getTime()
-        // },
-        // {
-        //   id: 9,
-        //   author: 'apple',
-        //   timestamp: new Date().getTime()
-        // },
-        // {
-        //   id: 10,
-        //   author: 'orange',
-        //   timestamp: new Date().getTime()
-        // },
+        {
+          id: 6,
+          author: 'apple',
+          message: 'I am mostly free on the weekends',
+         timestamp: new Date().getTime()
+        },
+        {
+          id: 7,
+          author: 'orange',
+          message: 'Weekends sound great.',
+          timestamp: new Date().getTime()
+        },
+        {
+          id: 8,
+          author: 'orange',
+          message: 'How about next weekend?',
+         timestamp: new Date().getTime()
+        },
+        {
+          id: 9,
+          author: 'apple',
+          message: 'Yes, that sounds perfect',
+          timestamp: new Date().getTime()
+        },
+        {
+          id: 10,
+          author: 'orange',
+          message: 'Awesome, I will seee you then.',
+          timestamp: new Date().getTime()
+        },
       ]
       setMessages([...messages, ...tempMessages])
   }
+
+  
 
   const renderMessages = () => {
     let i = 0;
@@ -141,22 +184,23 @@ export default function MessageList(props) {
     return tempMessages;
   }
 
+  
     return(
+      
       <div className="message-list">
+        
+       <Stack>
         <Toolbar
           title="fName lName"
-          rightItems={[
-            <ToolbarButton key="info" icon="ion-ios-information-circle-outline" />,
-            
+          rightItems={[       
+          <Button onClick={sayHello}>
+            <IoIosInformationCircle size={30}/>
+          </Button> 
           ]}
         />
-              
-        
-
-       
 
         <div className="message-list-container">{renderMessages()}</div>
-          
+
         <Compose rightItems={[
           <ToolbarButton key="photo" icon="ion-ios-camera" />,
           <ToolbarButton key="image" icon="ion-ios-image" />,
@@ -165,7 +209,9 @@ export default function MessageList(props) {
           <ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
           <ToolbarButton key="emoji" icon="ion-ios-happy" />
         ]}/>
+
+
+        </Stack>
       </div>
-      
     );
 }
