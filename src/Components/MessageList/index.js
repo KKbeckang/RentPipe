@@ -5,12 +5,21 @@ import ToolbarButton from '../ToolbarButton';
 import Message from '../Message';
 import moment from 'moment';
 
+
 import './MessageList.css';
+import PopUp from '../PopUps/PopUp';
 
 const MY_USER_ID = 'apple';
+document.addEventListener("DOMContentLoaded",() => {
+  const the_button = document.querySelector(".js-btn")
+  // the_button.addEventListener("click", handleClick)
+})
+
+
 
 export default function MessageList(props) {
   const [messages, setMessages] = useState([])
+
 
   useEffect(() => {
     getMessages();
@@ -22,53 +31,53 @@ export default function MessageList(props) {
         {
           id: 1,
           author: 'apple',
-         timestamp: new Date().getTime()
+          message: 'Hey, is this listing still available?',
+          timestamp: new Date().getTime()
         },
         {
           id: 2,
           author: 'orange',
+          message: 'Oh yes it is.',
           timestamp: new Date().getTime()
         },
         {
           id: 3,
           author: 'orange',
-         timestamp: new Date().getTime()
+          message: 'Would you like to visit it?',
+          timestamp: new Date().getTime()
         },
         {
           id: 4,
           author: 'apple',
-         timestamp: new Date().getTime()
+          message: 'Yes, I liked the location of the property',
+          timestamp: new Date().getTime()
         },
         {
           id: 5,
           author: 'apple',
+          message: 'When can I expect to visit?',
           timestamp: new Date().getTime()
         },
-        {
-          id: 6,
-          author: 'apple',
-         timestamp: new Date().getTime()
-        },
-        {
-          id: 7,
-          author: 'orange',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 8,
-          author: 'orange',
-         timestamp: new Date().getTime()
-        },
-        {
-          id: 9,
-          author: 'apple',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 10,
-          author: 'orange',
-          timestamp: new Date().getTime()
-        },
+        // {
+        //   id: 7,
+        //   author: 'orange',
+        //   timestamp: new Date().getTime()
+        // },
+        // {
+        //   id: 8,
+        //   author: 'orange',
+        //  timestamp: new Date().getTime()
+        // },
+        // {
+        //   id: 9,
+        //   author: 'apple',
+        //   timestamp: new Date().getTime()
+        // },
+        // {
+        //   id: 10,
+        //   author: 'orange',
+        //   timestamp: new Date().getTime()
+        // },
       ]
       setMessages([...messages, ...tempMessages])
   }
@@ -141,9 +150,13 @@ export default function MessageList(props) {
             
           ]}
         />
+              
+        
+
+       
 
         <div className="message-list-container">{renderMessages()}</div>
-
+          
         <Compose rightItems={[
           <ToolbarButton key="photo" icon="ion-ios-camera" />,
           <ToolbarButton key="image" icon="ion-ios-image" />,
@@ -153,5 +166,6 @@ export default function MessageList(props) {
           <ToolbarButton key="emoji" icon="ion-ios-happy" />
         ]}/>
       </div>
+      
     );
 }
