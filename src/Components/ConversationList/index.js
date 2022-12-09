@@ -4,7 +4,7 @@ import ConversationListItem from '../ConversationListItem';
 import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
 import axios from 'axios';
-
+import Modal from 'react-bootstrap/Modal';
 import './ConversationList.css';
 
 export default function ConversationList(props) {
@@ -19,7 +19,7 @@ export default function ConversationList(props) {
           return {
             photo: result.picture.large,
             name: `${result.name.first} ${result.name.last}`,
-            text: 'ok'
+            text: 'Realtor'
           };
         });
         setConversations([...conversations, ...newConversations])

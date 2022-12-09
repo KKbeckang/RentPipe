@@ -9,6 +9,8 @@ import './MessageList.css';
 import styled from 'styled-components';
 import { Stack } from 'react-bootstrap';
 import PopUp from '../PopUps/PopUp';
+import Modal from 'react-bootstrap/Modal';
+import Listingitem from '../Listingitem/Listingitem';
 
 
 const MY_USER_ID = 'apple';
@@ -26,6 +28,11 @@ export default function MessageList(props) {
       hover: "#b0b8c0"
     },
   }
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const Button = styled.button`
   background-color: ${(props) => theme[props.theme].default};
@@ -56,6 +63,7 @@ Button.defaultProps = {
   theme: "blue"
 };
 
+const [rentListings, setRentListings] = useState(null);
 
   const getMessages = () => {
      var tempMessages = [
@@ -186,18 +194,28 @@ Button.defaultProps = {
 
   
     return(
-      
       <div className="message-list">
         
        <Stack>
         <Toolbar
           title="fName lName"
           rightItems={[       
-          <Button onClick={sayHello}>
+          <Button onClick={handleShow}>
             <IoIosInformationCircle size={30}/>
           </Button> 
           ]}
         />
+        <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Property Information</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Property from firebase goes here</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
         <div className="message-list-container">{renderMessages()}</div>
 
