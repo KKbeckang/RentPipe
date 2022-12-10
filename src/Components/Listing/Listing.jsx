@@ -116,7 +116,7 @@ export default function Listing() {
           </Container>
           {user ? <div className="contactOwner" >{listing.userRef !== auth.currentUser?.uid && (
             <div className="mt-6">
-              <Button 
+              <Button variant="success"
                 onClick={() => {navigate("/messenger")}}
               >
                 Contact Landlord

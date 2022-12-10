@@ -30,7 +30,7 @@ const Login = () => {
 			password
 		  );
 		  if (userCredential.user) {
-			navigate("/");
+			navigate(-1);
 		  }
 		} catch (error) {
 		  alert("Bad user credentials");

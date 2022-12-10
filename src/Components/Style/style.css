@@ -1,3 +1,5 @@
+
+
 .row-cols-lg-4 {
 	padding-left: 2rem;
 	padding-bottom: 2rem;
@@ -62,3 +64,65 @@ h1 {
 }
 
 
+.profileCard{
+	padding-top: 25px;
+  	
+  	padding-bottom: 20px;
+  	
+}
+.card{
+	align-items: center;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.adCard {
+	
+	display: inline-block;
+	width: 100%;
+	height: 253px;
+}
+
+.profileImage {
+	margin-top: 10px;
+	display: inline-block;
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+  
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+  }
+  
+.one {
+	background-image: url('https://firebasestorage.googleapis.com/v0/b/rentpipe-d4b1c.appspot.com/o/pexels-photo-3760779.webp?alt=media&token=9aa10520-a85d-4f01-8647-75ba1fc2d0cd');
+}
+
+.profileBtnGrp {
+	margin-bottom: 20px;
+}
+
+.myListingHeading{
+	font-size:xx-large;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 40px;
+}
+.adHeading{
+	font-size:xx-large;
+	font-weight: bold;
+	color: white;
+	z-index: 1000;
+	text-align: center;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	margin-bottom: 40px;
+}
+
+.bg {
+	
+	background-image: url('https://firebasestorage.googleapis.com/v0/b/rentpipe-d4b1c.appspot.com/o/image.jpeg?alt=media&token=376e6b42-4d0b-4ca0-bbcb-ac4cd18b6be1');
+}
+
+.adBody{
+	align-items: center;
+}
