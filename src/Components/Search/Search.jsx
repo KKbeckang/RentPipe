@@ -1,19 +1,41 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button'
-import { getDocs } from 'firebase/firestore';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import ListingItem from '../Listingitem/Listingitem.jsx';
-import { db } from '../../firebase';
-import queries from '../../query';
 import '../Style/style.css';
-import {useNavigate} from "react-router-dom";
+import { useParams, useNavigate,Link } from "react-router-dom";
+import {
+	collection,
+	getDoc,
+	getDocs,
+	limit,
+	orderBy,
+	query,
+	where,
+  } from "firebase/firestore";
+  import { db } from "../../firebase";
+  const listingsRef = collection(db, "listings");
 
-const Sale = () => {
+
+
+const Search = () => {
 	const navigate = useNavigate()
+    const {type,id} = useParams();
+
 	const [zipcode,setzipcode]= useState("")
 	const [searchTerm, setSearchTerm] = useState("")
+	
+    const rentListingQuery = query(
+        listingsRef,
+		where("type", "==", type),
+        where("zipcode", "==", id),
+        orderBy("timestamp", "desc"),
+        
+      );
+
 	const [saleListings, setSaleListings] = useState(null);
 
 	const cleanData = (array) => {
@@ -27,11 +49,18 @@ const Sale = () => {
 		return listings;
 	};
 
+	const renderTooltip = (props) => (
+		<Tooltip id="button-tooltip" {...props}>
+		  Search Property Listing using ZipCode 
+		</Tooltip>
+	  );
+
 	useEffect(() => {
 		async function fetchListings() {
 			try {
+                
 				// execute the query
-				const querySnapSale = await getDocs(queries.saleListingQuery);
+				const querySnapSale = await getDocs(rentListingQuery);
 				
 
 				//Calling the clean function for all the data
@@ -47,6 +76,7 @@ const Sale = () => {
 		fetchListings();
 	}, []);
 
+	
 
 	const onSubmit = (e) =>{
 		e.preventDefault();
@@ -56,12 +86,16 @@ const Sale = () => {
 
 
 
+
+
 	return (
 		<>
         <br/>
-        <h1>Sale Property Listing</h1>
+        <h1>{type.toLocaleUpperCase()} Property Listing for "{id}"</h1>
         <br/>
-		<div class="container">
+		
+           
+        <div class="container">
             <div class="row">
             <div class="col-md-6">
                 <input type="text" class="form-control input-lg" onChange={(e)=>{setzipcode(e.target.value)}} placeholder="Enter ZipCode..."/>  
@@ -75,10 +109,18 @@ const Sale = () => {
                 
             </div>
             <div class="col-md-2">
+			<OverlayTrigger
+   placement="right"
+   delay={{ show: 250, hide: 400 }}
+   overlay={renderTooltip}
+    >
             <Button variant='success' role="button" onClick={onSubmit}>Search</Button>
+			</OverlayTrigger>
             </div>
             </div>
         </div>
+
+
     <br/>
     <br/>
 
@@ -91,4 +133,4 @@ const Sale = () => {
 	);
 };
 
-export default Sale;
+export default Search;

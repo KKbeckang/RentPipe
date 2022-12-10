@@ -8,9 +8,12 @@ import ListingItem from '../Listingitem/Listingitem.jsx';
 import { db } from '../../firebase';
 import queries from '../../query';
 import '../Style/style.css';
+import {useNavigate} from "react-router-dom";
 
 const Rent = () => {
-
+	const navigate = useNavigate()
+	const [zipcode,setzipcode]= useState("")
+	const [searchTerm, setSearchTerm] = useState("")
 	const [rentListings, setRentListings] = useState(null);
 	
 
@@ -47,29 +50,39 @@ const Rent = () => {
 		}
 		fetchListings();
 	}, []);
+
+	const onSubmit = (e) =>{
+		e.preventDefault();
+		console.log(searchTerm,zipcode)
+		navigate(`/search/${searchTerm}/${zipcode}`)
+	}
+
+
+
+
 	return (
 		<>
         <br/>
         <h1>Rental Property Listing</h1>
         <br/>
-            <div class="form-groupOffers">    
-        <div class="container">
+		<div class="container">
             <div class="row">
             <div class="col-md-6">
-                <input type="text" class="form-control input-lg" placeholder="Where do you wanna go?"/>  
+                <input type="text" class="form-control input-lg" onChange={(e)=>{setzipcode(e.target.value)}} placeholder="Enter ZipCode..."/>  
+            </div>
+            <div class="col-md-4">
+			<select class="form-control " name="languages" id="lang" onChange={(e)=>{setSearchTerm(e.target.value)}}>
+        <option value="0">Select Sale or rent </option>
+        <option value="rent">Rent</option>
+        <option value="sale">Sale</option>
+      </select>
+                
             </div>
             <div class="col-md-2">
-                <input type="date" class="form-control input-lg" name="start" placeholder="Check In"/>   
-            </div>
-            <div class="col-md-2">
-                <input type="date" class="form-control input-lg" name="end" placeholder="Check Out"/>            
-            </div>
-            <div class="col-md-2">
-            <Button variant='success' href="#" role="button">Search</Button>
+            <Button variant='success' role="button" onClick={onSubmit}>Search</Button>
             </div>
             </div>
         </div>
-    </div>
     <br/>
     <br/>
 
