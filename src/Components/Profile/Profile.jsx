@@ -101,11 +101,16 @@ export default function Profile() {
       <Col xs={12} sm={12} lg={8}>
       <div className='profileCard'>
       <Card className='card'>
-      <div className='adCard bg'>
+      <div className='adCard '>
+      <Row><Col>
+      <img width="350" height="253"  src="https://firebasestorage.googleapis.com/v0/b/rentpipe-d4b1c.appspot.com/o/MT02an4SdvffniyXAIz4SxmaFgl2-e3b167e4f735e5e2ba4b2bddc623c5b1-uncropped_scaled_within_1536_1152.webp-71c1a3f4-66de-4782-826a-79e8aa01e742?alt=media&token=6b25a319-9445-4a7d-8a8c-db3468b4a7e7"/>
+      </Col><Col>
         <Card.Body className='adBody'>
+          
         <div className='adHeading'>Want To Sell Or Rent A Home?</div>
         <button type="button" className="btn btn-primary btn-lg center" onClick={()=>{navigate("/sellorrentyourhome")}}>Creat Listing</button>
         </Card.Body>
+        </Col></Row>
         </div>
       </Card>
       </div>

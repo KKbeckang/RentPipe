@@ -3,18 +3,21 @@ import BackgroundCSL from './Carousel';
 import { getDocs } from 'firebase/firestore';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 import ListingItem from '../Listingitem/Listingitem.jsx';
 //import Slider from "../components/Slider";
 import { db } from '../../firebase';
 import queries from '../../query';
 import '../Style/style.css';
+import arrow from "../../Assets/right-arrow.png"
+
+
 
 const Homepage = () => {
 	const [offerListings, setOfferListings] = useState(null);
 	const [rentListings, setRentListings] = useState(null);
 	const [saleListings, setSaleListings] = useState(null);
-
+	const navigate = useNavigate()
 	const cleanData = (array) => {
 		const listings = [];
 		array.forEach((doc) => {
@@ -59,7 +62,7 @@ const Homepage = () => {
 					<div className="heading">
 						<h2>Recent offers</h2>
 						<Link to="/offers" style={{ textDecoration: 'none' }}>
-							<p className="ptag">Show more offers</p>
+							<p className="ptag" onClick={()=>{navigate('/offers')}}>Show more offers<img width="25" height="25" src={arrow}/> </p>
 						</Link>
 					</div>
 					<ListingItem data={offerListings} from="HOMEPAGE" />
@@ -71,7 +74,7 @@ const Homepage = () => {
 					<div className="heading">
 						<h2>Places for rent</h2>
 						<Link to="/category/rent" style={{ textDecoration: 'none' }}>
-							<p className="ptag">Show more places for rent</p>
+							<p className="ptag">Show more places for rent<img width="25" height="25" src={arrow}/></p>
 						</Link>
 					</div>
 					<ListingItem data={rentListings} from="HOMEPAGE" />
@@ -82,7 +85,7 @@ const Homepage = () => {
 					<div className="heading">
 						<h2>Places for sale</h2>
 						<Link to="/category/sale" style={{ textDecoration: 'none' }}>
-							<p className="ptag">Show more places for sale</p>
+							<p className="ptag">Show more places for sale<img width="25" height="25" src={arrow}/></p>
 						</Link>
 					</div>
 					<ListingItem data={saleListings} from="HOMEPAGE" />

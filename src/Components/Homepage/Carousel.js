@@ -58,7 +58,7 @@ function BackgroundCSL() {
         </div>
     </div>
 		<Carousel.Caption>
-					<h3>Lets Find You A Home</h3>
+					<h1>Lets Find You A Home</h1>
 				</Carousel.Caption>
       </Carousel.Item>
         )
