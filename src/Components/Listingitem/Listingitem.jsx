@@ -1,6 +1,8 @@
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { Link } from 'react-router-dom';
+import Badge from "react-bootstrap/Badge"
 import '../Style/style.css';
 const Listingitem = (props) => {
 	return (
@@ -8,9 +10,11 @@ const Listingitem = (props) => {
 			{props.data.map((listing) => (
 				<Col key={listing.id}>
 					<Card>
+						<Link to={`/${listing.data.type}/${listing.id}`}>
 						<Card.Img variant="top" src={`${listing.data.imgUrls[0]}`} />
+						</Link>
 						<Card.Body>
-							<Card.Title>{listing.data.name}</Card.Title>
+							<Card.Title>{listing.data.name}{listing.data.offer ? <Badge pill bg="success">Reduced Price</Badge>:null}</Card.Title>
 							<Card.Subtitle>{`${listing.data.regularPrice}$`}</Card.Subtitle>
 							<Card.Text>
 								{listing.data.type == 'rent' ? 'Rent' : 'Sale'}

@@ -12,7 +12,12 @@ import {
  
   import { useNavigate } from "react-router-dom";
   import { db } from "../../firebase"
-
+  import Card from "react-bootstrap/Card"
+  import Container from 'react-bootstrap/Container';
+  import Row from 'react-bootstrap/Row';
+  import Col from 'react-bootstrap/Col';
+  import Form from 'react-bootstrap/Form';
+  
 
   const CreateListing = () => {
 	const navigate = useNavigate();
@@ -27,6 +32,7 @@ import {
     parking: false,
     furnished: false,
     address: "",
+    zipcode:"",
     description: "",
     offer: false,
     regularPrice: 0,
@@ -42,6 +48,7 @@ import {
     bathrooms,
     parking,
     address,
+    zipcode,
     furnished,
     description,
     offer,
@@ -82,6 +89,7 @@ import {
       alert("Discounted price needs to be less than regular price");
       return;
     }
+    if(!zipcode)alert("Please enter zipcode")
     if (images.length > 6) {
       setLoading(false);
       alert("maximum 6 images are allowed");
@@ -182,7 +190,8 @@ import {
         
          <main className="max-w-md px-2 mx-auto">
          <h1 className="text-3xl text-center mt-6 font-bold">Create a Listing</h1>
-         <form onSubmit={onSubmit}>
+         <Card className="createListing">
+         <Form onSubmit={onSubmit}>
            <p className="text-lg mt-6 font-semibold">Sell / Rent</p>
            <div className="flex">
              
@@ -213,7 +222,7 @@ import {
                rent
              </button>
            </div>
-           <p className="text-lg mt-6 font-semibold">Name</p>
+           <p >Name</p>
            <input
              type="text"
              id="name"
@@ -317,6 +326,19 @@ import {
              required
              className="form-control"
            />
+            <p >Zipcode</p>
+           <input
+             type="text"
+             id="zipcode"
+             value={zipcode}
+             onChange={onChange}
+             placeholder="zipcode"
+             maxLength="10"
+             minLength="5"
+             required
+             className="form-control"
+           />
+
            {!geolocationEnabled && (
              <div className="flex space-x-6 justify-start mb-6">
                <div className="">
@@ -447,13 +469,15 @@ import {
                className="form-control"
              />
            </div>
+           <br/>
            <button
              type="submit"
              className="btn btn-success"
            >
              Create Listing
            </button>
-         </form>
+         </Form>
+         </Card>
        </main>
        </div>
     )

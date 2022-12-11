@@ -12,8 +12,8 @@ import {useNavigate} from "react-router-dom";
 
 const Rent = () => {
 	const navigate = useNavigate()
-	const [zipcode,setzipcode]= useState("")
-	const [searchTerm, setSearchTerm] = useState("")
+	const [zipcode,setzipcode]= useState(null)
+	const [searchTerm, setSearchTerm] = useState(null)
 	const [rentListings, setRentListings] = useState(null);
 	
 
@@ -72,7 +72,7 @@ const Rent = () => {
             </div>
             <div class="col-md-4">
 			<select class="form-control " name="languages" id="lang" onChange={(e)=>{setSearchTerm(e.target.value)}}>
-        <option value="0">Select Sale or rent </option>
+        <option value={null}>Select Sale or rent </option>
         <option value="rent">Rent</option>
         <option value="sale">Sale</option>
       </select>

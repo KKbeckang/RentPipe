@@ -59,7 +59,7 @@ export default function Listing() {
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             {listing.type === "rent" ? " / month" : ""}
-            {listing.offer ? <Badge pill bg="success">Discounted Price</Badge>:null}
+            {listing.offer ? <Badge pill bg="success">Reduced Price</Badge>:null}
           </h1>
           {listing.imgUrls ? <Slider img={listing.imgUrls}/>: null}
          <br/>
@@ -82,7 +82,7 @@ export default function Listing() {
             </p>
     
               <div>
-                {listing.offer ? <p>Price: <del>{listing.regularPrice}$</del> {listing.discountedPrice}$ <Badge pill bg="success">Discount</Badge></p>: <p>Price: {listing.regularPrice}$</p>}
+                {listing.offer ? <p>Price: <del>{listing.regularPrice}$</del> {listing.discountedPrice}$ <Badge pill bg="success">Reduced Price</Badge></p>: <p>Price: {listing.regularPrice}$</p>}
               </div>
        
           </div>

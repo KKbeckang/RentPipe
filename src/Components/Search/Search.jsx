@@ -26,7 +26,7 @@ const Search = () => {
     const {type,id} = useParams();
 
 	const [zipcode,setzipcode]= useState("")
-	const [searchTerm, setSearchTerm] = useState("")
+	const [searchTerm, setSearchTerm] = useState(null)
 	
     const rentListingQuery = query(
         listingsRef,
@@ -74,14 +74,15 @@ const Search = () => {
 			}
 		}
 		fetchListings();
-	}, []);
+	}, [type,id]);
 
 	
 
 	const onSubmit = (e) =>{
 		e.preventDefault();
-		console.log(searchTerm,zipcode)
-		navigate(`/search/${searchTerm}/${zipcode}`)
+		if(!zipcode)alert("Enter ZipCode to be searched")
+		else if(!searchTerm )alert("Specify Sale or Rent in the second feild")
+		else navigate(`/search/${searchTerm}/${zipcode}`)
 	}
 
 
@@ -102,7 +103,7 @@ const Search = () => {
             </div>
             <div class="col-md-4">
 			<select class="form-control " name="languages" id="lang" onChange={(e)=>{setSearchTerm(e.target.value)}}>
-        <option value="0">Select Sale or rent </option>
+        <option value={null}>Select Sale or rent </option>
         <option value="rent">Rent</option>
         <option value="sale">Sale</option>
       </select>
