@@ -60,9 +60,10 @@ const Homepage = () => {
 			{offerListings && offerListings.length > 0 && (
 				<div className="bgcolor">
 					<div className="heading">
-						<h2>Recent offers</h2>
+						
+						<h2> Recent offers </h2>
 						<Link to="/offers" style={{ textDecoration: 'none' }}>
-							<p className="ptag" onClick={()=>{navigate('/offers')}}>Show more offers<img width="25" height="25" src={arrow}/> </p>
+							<p className="ptag" onClick={()=>{navigate('/offers')}}>Show more offers<img alt ="arrow" width="25" height="25" src={arrow}/> </p>
 						</Link>
 					</div>
 					<ListingItem data={offerListings} from="HOMEPAGE" />
@@ -74,7 +75,7 @@ const Homepage = () => {
 					<div className="heading">
 						<h2>Places for rent</h2>
 						<Link to="/category/rent" style={{ textDecoration: 'none' }}>
-							<p className="ptag">Show more places for rent<img width="25" height="25" src={arrow}/></p>
+							<p className="ptag">Show more places for rent<img alt ="arrow" width="25" height="25" src={arrow}/></p>
 						</Link>
 					</div>
 					<ListingItem data={rentListings} from="HOMEPAGE" />
@@ -85,7 +86,7 @@ const Homepage = () => {
 					<div className="heading">
 						<h2>Places for sale</h2>
 						<Link to="/category/sale" style={{ textDecoration: 'none' }}>
-							<p className="ptag">Show more places for sale<img width="25" height="25" src={arrow}/></p>
+							<p className="ptag">Show more places for sale<img  alt ="arrow" width="25" height="25" src={arrow}/></p>
 						</Link>
 					</div>
 					<ListingItem data={saleListings} from="HOMEPAGE" />

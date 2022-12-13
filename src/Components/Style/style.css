@@ -7,7 +7,7 @@
 
 .ptag {
 	text-align: right;
-	color:#54B4D3
+	color:#26AB8A
 }
 h2 {
 	text-align: center;
@@ -22,10 +22,10 @@ h1 {
 	background-color: #f7f7f7;
 }
 .heading {
-	background-color: #636669;
-	border-radius: 4px;
-	padding-right: 30px;
-	padding-left: 30px;
+	background-color: #1b2430;
+	padding-top: 28px;
+	padding-right: 50px;
+	padding-left: 50px;
 }
 
 .thimbnailImg {
