@@ -1,6 +1,6 @@
-# RentPipe
+# RentPipe - Modern UI/UX website using React.js & ReactBoostrap
 
-**Start Project**
+<img src="https://i.ibb.co/YyCmfj1/React-Project2.png" alt="drawing" width="1600"/>
 
 yarn start
 
