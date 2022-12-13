@@ -35,7 +35,7 @@ function Navbar() {
 			<li><a className="" to="/category/rent" href="/category/rent">Rent</a></li>
 			<li><a className="" to="/category/sale" href="/category/sale">Sale</a></li>
 			{isLoggedin? <li><a href='javascript:void(0)' onClick={() => navigate('/messenger')} >Messages {isLoggedin? <Badge  bg="danger">2</Badge>:null}</a></li>:null}
-			{isLoggedin? <li><a href='javascript:void(0)' onClick={() => { isLoggedin?  navigate('/profile'):navigate('/login')}} >{pageState}</a></li>:null}
+			<li><a href='javascript:void(0)' onClick={() => { isLoggedin?  navigate('/profile'):navigate('/login')}} >{pageState}</a></li>
 		</ul>
 		</div>
     </nav>
