@@ -32,7 +32,7 @@ h1 {
 	padding: 5px;
 	width: 30px;
 }
-
+  
 .carouselListing{
 	display: block;
   margin-left: auto;
@@ -137,4 +137,10 @@ h1 {
 
 .adBody{
 	align-items: center;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
 }
