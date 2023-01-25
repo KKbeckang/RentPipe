@@ -7,7 +7,7 @@
 
 <p>Detail Explaination at slide https://docs.google.com/presentation/d/1xVJN5D9eW8yBvMDrndSb7jV-ifWzo9cO2d3FzHpmKH4/edit?usp=sharingit?</p>
 
-<h2>How to start the project</h2>: 
+<h2>How to start the project?</h2>
 
 **Yarn installation**
 
